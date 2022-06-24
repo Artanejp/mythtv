@@ -11,6 +11,8 @@ ifdef DEBUG_BUILD
 	CONFIGURE_OPTS += --compile-type=debug
 endif
 
+	CONFIGURE_OPTS += --disable-libdav1d
+
 ifeq (ccache,$(findstring ccache,$(PATH)))
 	CONFIGURE_OPTS += --cc=/usr/lib/ccache/cc --cxx=/usr/lib/ccache/c++
 endif

@@ -1,3 +1,9 @@
+mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.2) unstable; urgency=medium
+
+  * Drop support libdav1d , due to changing APIs at libdav1d 1.x .
+  
+ -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Fri, 24 Jun 2022 11:35:15 +0900
+
 mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.1) unstable; urgency=medium
 
   * Merge newer Upstream from fixes/31 commit 7e4ce1ba987cf8420c1c293c6bafe665a0ff3d98.
