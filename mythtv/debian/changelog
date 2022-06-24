@@ -1,3 +1,13 @@
+mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.1) unstable; urgency=medium
+
+  * Merge newer Upstream from fixes/31 commit 7e4ce1ba987cf8420c1c293c6bafe665a0ff3d98.
+  * Git revision is e49f31da4fd1baba66cb57e02d709c622c85ce5.
+  * Change depends for libcec is Debian official.
+  * Debian/sid, Bookworm : Built with based on newest release.
+  * See https://github.com/Artanejp/mythtv/tree/31+ISDB-Ja .
+  
+ -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Fri, 24 Jun 2022 10:36:44 +0900
+
 mythtv-isdb-ja (2:31.0+fixes20220222.gitf7d1d249eb.ISDB.1) unstable; urgency=medium
 
   * Merge newer Upstream from fixes/31 commit  ce31be6239.
