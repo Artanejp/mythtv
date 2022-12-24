@@ -1,8 +1,9 @@
 mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.3) unstable; urgency=medium
 
   * Build-Dep: make selectable beyond nv-codec-headers or libffmpeg-nvenc-dev .
+  * mythtv-python: Fix errors at packaging for dh_missing .
   
- -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Sat, 24 Dec 2022 22:01:03 +0900
+ -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Sun, 25 Dec 2022 00:07:02 +0900
  
 mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.2) unstable; urgency=medium
 

@@ -1,4 +1,4 @@
-##/usr/bin/env python
+##/usr/bin/env python3
 
 from __future__ import print_function
 from distutils.core import setup
@@ -86,7 +86,7 @@ setup(
                   'MythTV/wikiscripts', 'MythTV/utility',
 				  'MythTV/services_api'],
         package_dir={'MythTV/tmdb3':'./tmdb3/tmdb3', 'MythTV/tvmaze':'./tvmaze', 'MythTV/ttvdbv4':'./ttvdbv4'},
-        data_files=[('MythTV/ttvdb/XSLT', glob.glob('MythTV/ttvdb/XSLT/*'))],
+        data_files=[('lib/python3/dist-packages/MythTV/ttvdb/XSLT', glob.glob('MythTV/ttvdb/XSLT/*'))],
         url=['http://www.mythtv.org/'],
         scripts=SCRIPTS,
         requires=['MySQLdb','lxml'],
