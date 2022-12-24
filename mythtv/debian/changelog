@@ -1,3 +1,9 @@
+mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.3) unstable; urgency=medium
+
+  * Build-Dep: make selectable beyond nv-codec-headers or libffmpeg-nvenc-dev .
+  
+ -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Sat, 24 Dec 2022 22:01:03 +0900
+ 
 mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.2) unstable; urgency=medium
 
   * Drop support libdav1d , due to changing APIs at libdav1d 1.x .

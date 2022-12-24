@@ -24,7 +24,7 @@ Build-Depends: debhelper-compat (= 13), dh-sequence-python3, libxext-dev,
  libnet-upnp-perl, libx265-dev, libmp3lame-dev, libxnvctrl-dev, liblzo2-dev,
  libxml-simple-perl, python3-simplejson, python3-future, 
  libaom-dev [amd64], python3-mysqldb, python3-lxml, python3-requests,
- libxcb-shm0-dev, libegl-dev, nv-codec-headers [amd64 i386],
+ libxcb-shm0-dev, libegl-dev, nv-codec-headers | libffmpeg-nvenc-dev [amd64 i386] ,
  dh-linktree, fonts-freefont-ttf, fonts-tlwg-purisa-ttf, fonts-texgyre
 
 Package: mythtv
