@@ -559,6 +559,9 @@ bool DVBStreamHandler::SupportsTSMonitoring(void)
     }
 
     QByteArray dvr_dev_path = m_dvrDevPath.toLatin1();
+        LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO OPEN (%1)")
+        .arg(m_dvrDevPath));
     int dvr_fd = open(dvr_dev_path.constData(), O_RDONLY | O_NONBLOCK);
     if (dvr_fd < 0)
     {
@@ -574,6 +577,9 @@ bool DVBStreamHandler::SupportsTSMonitoring(void)
         RemovePIDFilter(pat_pid);
     }
 
+    LOG(VB_GENERAL, LOG_INFO, LOC +
+    QString("TRY TO CLOSE (%1)")
+    .arg(dvr_fd));
     close(dvr_fd);
 
     QMutexLocker locker(&s_rec_supportsTsMonitoringLock);

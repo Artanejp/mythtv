@@ -1549,11 +1549,17 @@ cLlCiHandler::~cLlCiHandler()
   for (auto & session : m_sessions)
       delete session;
   delete m_tpl;
+    LOG(VB_GENERAL, LOG_INFO, __FILE__ +
+        QString("TRY TO CLOSE (%1)")
+        .arg(m_fdCa));
   close(m_fdCa);
 }
 
 cCiHandler *cCiHandler::CreateCiHandler(const char *FileName)
 {
+    LOG(VB_GENERAL, LOG_INFO, __FILE__ +
+        QString("TRY TO OPEN (%1)")
+        .arg(FileName));
     int fd_ca = open(FileName, O_RDWR);
     if (fd_ca >= 0)
     {
@@ -1575,7 +1581,10 @@ cCiHandler *cCiHandler::CreateCiHandler(const char *FileName)
         }
         else
             LOG_ERROR_STR(FileName);
-        close(fd_ca);
+        LOG(VB_GENERAL, LOG_INFO, __FILE__ +
+        QString("TRY TO CLOSE (%1)")
+        .arg(fd_ca));
+       close(fd_ca);
     }
     return nullptr;
 }
@@ -1867,6 +1876,9 @@ cHlCiHandler::cHlCiHandler(int Fd, int NumSlots)
 cHlCiHandler::~cHlCiHandler()
 {
     cMutexLock MutexLock(&m_mutex);
+    LOG(VB_GENERAL, LOG_INFO, __FILE__ +
+        QString("TRY TO CLOSE (%1)")
+        .arg(m_fdCa));
     close(m_fdCa);
 }
 

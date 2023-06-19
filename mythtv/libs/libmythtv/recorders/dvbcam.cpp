@@ -66,6 +66,9 @@ DVBCam::DVBCam(QString aDevice)
 {
     QString dvbdev = CardUtil::GetDeviceName(DVB_DEV_CA, m_device);
     QByteArray dev = dvbdev.toLatin1();
+    LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO OPEN (%1)")
+        .arg(dvbdev));
     int cafd = open(dev.constData(), O_RDWR);
     if (cafd >= 0)
     {
@@ -76,6 +79,9 @@ DVBCam::DVBCam(QString aDevice)
         else
             LOG(VB_GENERAL, LOG_ERR, "ioctl CA_GET_CAP failed: " + ENO);
 
+        LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO CLOSE (%1)")
+        .arg(cafd));
         close(cafd);
     }
 }

@@ -41,6 +41,8 @@
 #include <sys/types.h>
 #include <linux/version.h>
 
+#include <QThread>
+
 // MythTV headers
 #include "mythconfig.h"
 #include "mythdb.h"
@@ -170,6 +172,9 @@ void DVBChannel::Close(DVBChannel *who)
 
     if (m_fdFrontend >= 0)
     {
+        LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO CLOSE (%1)")
+        .arg(m_fdFrontend));
         close(m_fdFrontend);
         m_fdFrontend = -1;
 
@@ -233,6 +238,9 @@ bool DVBChannel::Open(DVBChannel *who)
 
     for (int tries = 1; ; ++tries)
     {
+        LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO OPEN (%1)")
+        .arg(dvbdev));
         m_fdFrontend = open(devn.constData(), O_RDWR | O_NONBLOCK);
         if (m_fdFrontend >= 0)
             break;
@@ -254,6 +262,9 @@ bool DVBChannel::Open(DVBChannel *who)
         LOG(VB_GENERAL, LOG_ERR, LOC +
             "Failed to get frontend information." + ENO);
 
+        LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO CLOSE (%1)")
+        .arg(m_fdFrontend));
         close(m_fdFrontend);
         m_fdFrontend = -1;
         return false;
@@ -1419,7 +1430,10 @@ static void drain_dvb_events(int fd)
 {
     struct dvb_frontend_event event {};
     int ret = 0;
-    while ((ret = ioctl(fd, FE_GET_EVENT, &event)) == 0);
+    while ((ret = ioctl(fd, FE_GET_EVENT, &event)) == 0)
+	{
+		QThread::usleep(1000);
+	}
     if ((ret < 0) && (EAGAIN != errno))
     {
         LOG(VB_CHANNEL, LOG_DEBUG, "Draining DVB Event failed. " + ENO);

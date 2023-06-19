@@ -11,6 +11,7 @@
 // Qt headers
 #include <QMap>
 #include <QDir>
+#include <QRegularExpression>
 
 // MythTV headers
 #include "mythconfig.h"
@@ -467,12 +468,32 @@ QStringList CardUtil::ProbeVideoDevices(const QString &rawtype)
     if (rawtype.toUpper() == "DVB")
     {
         QDir dir("/dev/dvb", "adapter*", QDir::Name, QDir::Dirs);
-        foreach (const auto & it, dir.entryInfoList())
+		QFileInfoList check_list = dir.entryInfoList();
+		//#ifdef WORKAROUND_FOR_FUSE_B25
+		#if 1
+		// Checking for exists both /dev/dvb/adapterX and /dev/dvb/adapter(X+8)
+        QRegularExpression pat1("[0-9]+");
+		QFileInfoList check_list_bak(dir.entryInfoList());
+        foreach (const auto & it, check_list_bak)
+		{
+		   QString s1 = it.filePath();
+           QString s2 = s1.right(s1.lastIndexOf(pat1));
+           if(!(s2.isEmpty())) {
+              uint n = s2.toUInt();
+              QString tmps(QString("/dev/dvb/adapter%1").arg(n + 8));
+			  if(dir.entryList().contains(tmps)) {
+                  check_list.removeAll(it);
+			  }
+		   }
+        }
+		#endif
+        foreach (const auto & it, check_list)
         {
             QDir subdir(it.filePath(), "frontend*", QDir::Name, QDir::Files | QDir::System);
             const QFileInfoList subil = subdir.entryInfoList();
             if (subil.isEmpty())
                 continue;
+            LOG(VB_GENERAL, LOG_INFO, LOC + QString("DVB DEVICE FOUND: %1").arg(it.filePath()));
 
             foreach (const auto & subit, subil)
                 devs.push_back(subit.filePath());
@@ -609,6 +630,9 @@ QStringList CardUtil::ProbeDeliverySystems(const QString &device)
     }
     LOG(VB_GENERAL, LOG_INFO, QString("CardUtil(%1): ").arg(device) + msg);
 
+    LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO CLOSE (%1)")
+        .arg(fd_frontend));
     close(fd_frontend);
 #else
     Q_UNUSED(device);
@@ -656,6 +680,9 @@ QString CardUtil::ProbeDefaultDeliverySystem(const QString &device)
     if (fd >= 0)
     {
         delsys = ProbeBestDeliverySystem(fd);
+        LOG(VB_GENERAL, LOG_INFO, LOC +
+           QString("TRY TO CLOSE (%1)")
+			.arg(fd));
         close(fd);
     }
 #else
@@ -693,6 +720,9 @@ QString CardUtil::ProbeDVBFrontendName(const QString &device)
 #ifdef USING_DVB
     QString dvbdev = CardUtil::GetDeviceName(DVB_DEV_FRONTEND, device);
     QByteArray dev = dvbdev.toLatin1();
+    LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO OPEN (%1)")
+        .arg(dvbdev)); 
     int fd_frontend = open(dev.constData(), O_RDWR | O_NONBLOCK);
     if (fd_frontend < 0)
         return "ERROR_OPEN";
@@ -707,6 +737,9 @@ QString CardUtil::ProbeDVBFrontendName(const QString &device)
 
     ret = info.name;
 
+    LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO CLOSE (%1)")
+        .arg(fd_frontend));
     close(fd_frontend);
 #else
     Q_UNUSED(device);
@@ -890,6 +923,9 @@ DTVModulationSystem CardUtil::ProbeCurrentDeliverySystem(const QString &device)
     LOG(VB_GENERAL, LOG_DEBUG, QString("CardUtil(%1): delsys:%2 %3")
         .arg(device).arg(delsys).arg(delsys.toString()));
 
+    LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO CLOSE (%1)")
+        .arg(fd_frontend));
     close(fd_frontend);
 #else
     Q_UNUSED(device);
@@ -970,6 +1006,9 @@ QString CardUtil::ProbeSubTypeName(uint inputid)
     }
     SetDeliverySystem(inputid, delsys, fd_frontend);
     tunertype = ConvertToTunerType(delsys);
+    LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO CLOSE (%1)")
+        .arg(fd_frontend));
     close(fd_frontend);
 
     QString subtype = "ERROR_UNKNOWN";
@@ -1145,6 +1184,9 @@ int CardUtil::SetDeliverySystem(uint inputid, DTVModulationSystem delsys)
     }
     ret = SetDeliverySystem(inputid, delsys, fd_frontend);
 
+    LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO CLOSE (%1)")
+        .arg(fd_frontend));
     close(fd_frontend);
 #else
     Q_UNUSED(inputid);
@@ -1221,6 +1263,9 @@ int CardUtil::OpenVideoDevice(const QString &device)
 
     QString dvbdev = CardUtil::GetDeviceName(DVB_DEV_FRONTEND, device);
     QByteArray dev = dvbdev.toLatin1();
+    LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO OPEN (%1)")
+        .arg(dvbdev));
     int fd_frontend = open(dev.constData(), O_RDWR | O_NONBLOCK);
     if (fd_frontend < 0)
     {
