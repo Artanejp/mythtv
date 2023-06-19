@@ -69,7 +69,7 @@ DVBCam::DVBCam(QString aDevice)
     LOG(VB_GENERAL, LOG_INFO, LOC +
         QString("TRY TO OPEN (%1)")
         .arg(dvbdev));
-    int cafd = open(dev.constData(), O_RDWR);
+    int cafd = open(dev.constData(), O_RDWR | O_CLOEXEC | O_NONBLOCK);
     if (cafd >= 0)
     {
         ca_caps_t caps;
