@@ -616,6 +616,9 @@ QStringList CardUtil::ProbeDeliverySystems(const QString &device)
     {
         LOG(VB_GENERAL, LOG_ERR,
             QString("CardUtil(%1) FE_GET_PROPERTY ioctl failed").arg(device) + ENO);
+        LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO CLOSE (%1)")
+        .arg(fd_frontend));
         close(fd_frontend);
         return delsyslist;
     }
@@ -722,16 +725,23 @@ QString CardUtil::ProbeDVBFrontendName(const QString &device)
     QByteArray dev = dvbdev.toLatin1();
     LOG(VB_GENERAL, LOG_INFO, LOC +
         QString("TRY TO OPEN (%1)")
-        .arg(dvbdev)); 
-    int fd_frontend = open(dev.constData(), O_RDWR | O_NONBLOCK);
+        .arg(dvbdev));
+    int fd_frontend = open(dev.constData(), O_RDWR | O_NONBLOCK | O_CLOEXEC);
     if (fd_frontend < 0)
         return "ERROR_OPEN";
+    LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("OPEN (%1) OK FD=%2")
+        .arg(dvbdev).arg(fd_frontend)); 
 
     struct dvb_frontend_info info {};
     int err = ioctl(fd_frontend, FE_GET_INFO, &info);
     if (err < 0)
     {
+        LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("TRY TO CLOSE (%1)")
+        .arg(fd_frontend));
         close(fd_frontend);
+    sleep(5);
         return "ERROR_PROBE";
     }
 
@@ -741,6 +751,7 @@ QString CardUtil::ProbeDVBFrontendName(const QString &device)
         QString("TRY TO CLOSE (%1)")
         .arg(fd_frontend));
     close(fd_frontend);
+    sleep(5);
 #else
     Q_UNUSED(device);
 #endif // USING_DVB
@@ -1266,13 +1277,16 @@ int CardUtil::OpenVideoDevice(const QString &device)
     LOG(VB_GENERAL, LOG_INFO, LOC +
         QString("TRY TO OPEN (%1)")
         .arg(dvbdev));
-    int fd_frontend = open(dev.constData(), O_RDWR | O_NONBLOCK);
+    int fd_frontend = open(dev.constData(), O_RDWR | O_NONBLOCK | O_CLOEXEC);
     if (fd_frontend < 0)
     {
         LOG(VB_GENERAL, LOG_ERR, LOC +
             QString("Can't open DVB frontend (%1) for %2.")
                 .arg(dvbdev).arg(device) + ENO);
     }
+    LOG(VB_GENERAL, LOG_INFO, LOC +
+        QString("OPEN (%1) OK FD=%2")
+        .arg(dvbdev).arg(fd_frontend)); 
     return fd_frontend;
 }
 
