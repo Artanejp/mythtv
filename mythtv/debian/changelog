@@ -1,3 +1,11 @@
+mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.4) unstable; urgency=medium
+
+  * Build against recent unstable libs.
+  * mythavcodec/x86: mathops.h : backport from ffmpeg 6.1 to resolv FTBFS around inline assembler.
+  * debian/control : Add amd-codec-headers to build confilcts.
+  
+ -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Fri, 01 Mar 2024 06:50:45 +0900
+ 
 mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.3) unstable; urgency=medium
 
   * Build-Dep: make selectable beyond nv-codec-headers or libffmpeg-nvenc-dev .
