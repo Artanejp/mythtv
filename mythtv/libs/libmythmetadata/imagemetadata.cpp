@@ -278,7 +278,11 @@ protected:
     // Clang8 warns that 'AutoPtr' is deprecated. It was apparently
     // deprecated in glibc-2.27, and the exiv2 library hasn't been
     // updated yet.
+    #if EXIV2_VERSION >= EXIV2_MAKE_VERSION(0, 28, 0)
+    Exiv2::Image::UniquePtr m_image;
+    #else
     Exiv2::Image::AutoPtr m_image;
+    #endif
     Exiv2::ExifData       m_exifData;
 };
 
