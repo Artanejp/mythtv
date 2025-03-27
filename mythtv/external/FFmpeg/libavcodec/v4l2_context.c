@@ -48,9 +48,9 @@ static inline V4L2m2mContext *ctx_to_m2mctx(V4L2Context *ctx)
         container_of(ctx, V4L2m2mContext, capture);
 }
 
-static inline AVClass *logger(V4L2Context *ctx)
+static inline const AVClass *logger(V4L2Context *ctx)
 {
-    return ctx_to_m2mctx(ctx)->avctx;
+    return ctx_to_m2mctx(ctx)->avctx->av_class;
 }
 
 static inline unsigned int v4l2_get_width(struct v4l2_format *fmt)

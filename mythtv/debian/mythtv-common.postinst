@@ -81,7 +81,7 @@ case "$1" in
         if getent passwd syslog 1>/dev/null; then
             chown syslog:adm -R /var/log/mythtv
         else
-            chown root:adm -R /var/log/mythtv
+            chown mythtv:adm -R /var/log/mythtv
         fi
         chmod 2755 /var/log/mythtv
     fi

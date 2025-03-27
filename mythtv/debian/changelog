@@ -1,16 +1,15 @@
-mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.4.2) unstable; urgency=medium
+mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.5) unstable; urgency=medium
 
+  * Based on commit 0e236bfb0769c68daa6c649d9e97338a4735f4b5 .  
   * Build against recent unstable libs.
-  * Build against Qt 5.15.13 .
-  * Change liblircclient-dev to liblirc-dev .
-  
- -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Fri, 24 May 2024 05:57:54 +0900
- 
-mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.4.1) unstable; urgency=medium
-
-  * Build against recent unstable libs, build with 64bit time_t.
-  
- -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Mon, 04 Mar 2024 14:41:32 +0900
+  * Build within docker container.
+  * Available to build with exiv2 0.28 .
+  * Fix FTBFSs with GCC 14.
+  * Fix build dependencies.
+  * Fix wrong debian/changlog entry.
+  * mythtv-common : TRY: Fix l/var/log/mythtv's owner to mythtv:adm .
+   
+ -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Sun, 08 Sep 2024 01:15:02 +0900
  
 mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.4) unstable; urgency=medium
 
