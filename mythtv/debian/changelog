@@ -1,3 +1,17 @@
+mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.4.2) unstable; urgency=medium
+
+  * Build against recent unstable libs.
+  * Build against Qt 5.15.13 .
+  * Change liblircclient-dev to liblirc-dev .
+  
+ -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Fri, 24 May 2024 05:57:54 +0900
+ 
+mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.4.1) unstable; urgency=medium
+
+  * Build against recent unstable libs, build with 64bit time_t.
+  
+ -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Mon, 04 Mar 2024 14:41:32 +0900
+ 
 mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.4) unstable; urgency=medium
 
   * Build against recent unstable libs.
@@ -379,7 +393,7 @@ mythtv-dmo (31.0+fixes20200524.git1ca7a4b09e-dmo1.ISDB.1) unstable; urgency=medi
   * Apply ISDB-Ja commit 7425a6997005ea263049b8749e31d06b61abd792 .
   * See https://github.com/Artanejp/mythtv/tree/31+ISDB-Ja .
 
- -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Tue, 02 June 2020 19:15:37 +0900
+ -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Tue, 02 Jun 2020 19:15:37 +0900
 
 mythtv-dmo (31.0+fixes20200524.git1ca7a4b09e-dmo1) unstable; urgency=medium
 
