@@ -69,9 +69,15 @@ class META_PUBLIC MetaIOID3 : public MetaIOTagLib
     static UserTextIdentificationFrame* find(TagLib::ID3v2::Tag *tag,
                                       const String &description);
     static PopularimeterFrame* findPOPM(TagLib::ID3v2::Tag *tag, const String &email);
+    #if TAGLIB_MAJOR_VERSION <= 1
     static AttachedPictureFrame* findAPIC(TagLib::ID3v2::Tag *tag,
                                    const AttachedPictureFrame::Type &type,
                                    const String &description = String::null);
+    #else /* VER >= 2.x */
+    static AttachedPictureFrame* findAPIC(TagLib::ID3v2::Tag *tag,
+                                   const AttachedPictureFrame::Type &type,
+                                   const String &description = String(""));
+    #endif
     static QString getExtFromMimeType(const QString &mimeType);
 
     TagLib::File *m_file {nullptr};

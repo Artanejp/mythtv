@@ -588,8 +588,13 @@ AttachedPictureFrame* MetaIOID3::findAPIC(TagLib::ID3v2::Tag *tag,
   for (auto & frame : l)
   {
     auto *f = dynamic_cast<AttachedPictureFrame *>(frame);
+    #if TAGLIB_MAJOR_VERSION <= 1
     if (f && f->type() == type &&
         (description.isNull() || f->description() == description))
+    #else /* VER >= 2.x */
+    if (f && f->type() == type &&
+        (description.isEmpty() || f->description() == description))
+    #endif
       return f;
   }
   return nullptr;

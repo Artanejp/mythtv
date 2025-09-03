@@ -70,10 +70,17 @@ bool MetaIOOggVorbis::write(const QString &filename, MusicMetadata* mdata)
         if (tag->contains("MUSICBRAINZ_ALBUMARTISTID") &&
             (tag->fieldListMap()["MUSICBRAINZ_ALBUMARTISTID"].toString() ==
                 MYTH_MUSICBRAINZ_ALBUMARTIST_UUID))
+        #if TAGLIB_MAJOR_VERSION <= 1
         {
             tag->removeField("MUSICBRAINZ_ALBUMARTISTID");
         }
         tag->removeField("COMPILATION_ARTIST");
+        #else /* VER >= 2.x */
+        {
+            tag->removeFields(String("MUSICBRAINZ_ALBUMARTISTID"));
+        }
+        tag->removeFields(String("COMPILATION_ARTIST"));
+        #endif
     }
 
     saveTimeStamps();
