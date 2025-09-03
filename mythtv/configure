@@ -5877,7 +5877,7 @@ if enabled taglib; then
                 echo "Can't find taglib-config. Assuming 1.7 or later."
                 taglib_minor="7"
             fi
-	elif testx"$taglib_major" = x"0" ; then
+	elif test x"$taglib_major" = x"0" ; then
                 echo "Can't find taglib-config. Assuming 1.7 or later."
                 taglib_minor="7"
 	fi
