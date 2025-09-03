@@ -23,8 +23,12 @@
 #ifndef _LINUX_IVTV_H
 #define _LINUX_IVTV_H
 
-#define __u32 uint32_t
-#define __u64 uint64_t
+/* NOTE: modren libc already have __u32 and __u64 type. */
+//#define __u32 uint32_t
+//#define __u64 uint64_t
+typedef uint32_t __u32;
+typedef long long unsigned int __u64;
+
 
 /* NOTE: the ioctls in this file will eventually be replaced by v4l2 API
    ioctls. */
