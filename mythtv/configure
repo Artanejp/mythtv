@@ -5868,12 +5868,19 @@ enabled ffmpeg_pthreads && enable pthreads
 # Check for taglib for libmythmetadata
 if enabled taglib; then
     taglib_minor="0"
+    taglib_major="0"
     if test x`which taglib-config` != x"" ; then
         taglib_minor=`taglib-config --version | cut -d. -f2`
-        if test x"$taglib_minor" = x"" ; then
-            echo "Can't find taglib-config. Assuming 1.7 or later."
-            taglib_minor="7"
-        fi
+        taglib_major=`taglib-config --version | cut -d. -f1`
+	if test x"$taglib_major" = x"1" ; then
+            if test x"$taglib_minor" = x"" ; then
+                echo "Can't find taglib-config. Assuming 1.7 or later."
+                taglib_minor="7"
+            fi
+	elif testx"$taglib_major" = x"0" ; then
+                echo "Can't find taglib-config. Assuming 1.7 or later."
+                taglib_minor="7"
+	fi
         if test $target_os = android ; then
             tagprefix=`taglib-config --prefix`
         else
@@ -5885,10 +5892,17 @@ if enabled taglib; then
             taglibs="$taglibs -lz -lm"
         fi
     fi
-
-    if test $taglib_minor -lt 7 || ! check_class_headers_cpp "taglib/fileref.h stdlib.h" TagLib::FileRef $tagincludes $taglibs -lstdc++; then
+    if test $taglib_major -eq 1 ; then
+        if test $taglib_minor -lt 7 || ! check_class_headers_cpp "taglib/fileref.h stdlib.h" TagLib::FileRef $tagincludes $taglibs -lstdc++; then
+            die "ERROR: cannot find taglib 1.7 or later."
+        fi
+    elif test $taglib_major -eq 0; then
         die "ERROR: cannot find taglib 1.7 or later."
-    fi
+    else
+       if ! check_class_headers_cpp "taglib/fileref.h stdlib.h" TagLib::FileRef $tagincludes $taglibs -lstdc++; then
+            die "ERROR: cannot find taglib 1.7 or later."
+       fi
+    fi    
 fi
 
 # Attempt to use libudev for mediamonitor

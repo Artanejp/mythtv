@@ -1,8 +1,9 @@
 mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.6) unstable; urgency=medium
 
   * Build against Qt 5.17 and Debian 'Trixie' again.
+  * Fix version check error with libtag-dev >= 2.x.
   
- -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Wed, 03 Sep 2025 20:54:39 +0900
+ -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Wed, 03 Sep 2025 23:50:25 +0900
  
 mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.5) unstable; urgency=medium
 
