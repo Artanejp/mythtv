@@ -44,6 +44,11 @@ endif
 endif
 endif
 
+# SET CFLAGS and CXXFLAGS for GCC >= 15.
+
+	CFLAGS += -std=gnu17
+	CXXFLAGS += -std=gnu++17
+# 
 # grep MYTH_BINARY_VERSION libs/libmythbase/mythversion.h
 # 31.20200101-1 as 31.0
 
