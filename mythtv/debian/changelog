@@ -1,3 +1,10 @@
+mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.8) unstable; urgency=high
+
+  * Drop using Qt5 Webkit. This package had already dropped from sid/trixie.
+  * This effects unavailable to using some plugins using WebBrowser.
+  
+ -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Sun, 21 Jun 2026 13:00:53 +0900
+
 mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.7) unstable; urgency=medium
 
   * Prepare to build Qt 5.15.19 , but still for 5.15.17 .
