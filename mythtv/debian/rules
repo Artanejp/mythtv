@@ -1,12 +1,13 @@
 #!/usr/bin/make -f
 
-ifeq (nostrip,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 	DEBUG_BUILD=1
-endif
+#ifeq (nostrip,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+#	DEBUG_BUILD=1
+#endif
 
-ifeq (noopt,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-	DEBUG_BUILD=1
-endif
+#ifeq (noopt,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+#	DEBUG_BUILD=1
+#endif
 ifdef DEBUG_BUILD
 	CONFIGURE_OPTS += --compile-type=debug
 endif
@@ -45,10 +46,12 @@ endif
 endif
 
 # SET CFLAGS and CXXFLAGS for GCC >= 15.
+# With optimize.
+#  
+	CONFIGURE_OPTS += --extra-cflags="-std=gnu17 -O2"
+	CONFIGURE_OPTS += --extra-cxxflags="-std=gnu++17 -O2"
+#	CONFIGURE_OPTS += --extra-ldflags="-g"
 
-	CFLAGS += -std=gnu17
-	CXXFLAGS += -std=gnu++17
-# 
 # grep MYTH_BINARY_VERSION libs/libmythbase/mythversion.h
 # 31.20200101-1 as 31.0
 
@@ -168,4 +171,4 @@ debian/libmythtv-recommends-dummy.so:
 	$(ARCH_SPECIFIC_LIB_RECOMMENDS)
 
 #override_dh_dwz override_dh_quilt_unpatch override_dh_auto_test override_dh_auto_clean:
-override_dh_dwz override_dh_auto_test override_dh_auto_clean:
+override_dh_auto_test override_dh_auto_clean:

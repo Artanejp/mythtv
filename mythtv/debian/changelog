@@ -1,3 +1,16 @@
+mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.8.2) unstable; urgency=low
+
+  * Make building dbgsym packages correctness.
+  * This eats disks a lot.
+  
+ -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Thu, 25 Jun 2026 01:35:09 +0900
+
+mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.8.1) unstable; urgency=low
+
+  * Add -dbgsym packages.
+  
+ -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Mon, 22 Jun 2026 05:04:19 +0900
+
 mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.8) unstable; urgency=high
 
   * Drop using Qt5 Webkit. This package had already dropped from sid/trixie.

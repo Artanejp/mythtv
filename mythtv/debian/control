@@ -6,7 +6,7 @@ Bugs: mailto:whatisthis.sowhat@gmail.com
 Homepage: https://www.mythtv.org/
 Standards-Version: 4.5.1
 Build-Conflicts: libmyth-dev, liboss4-salsa-dev, libroar-dev, amf-codec-headers
-Build-Depends: debhelper-compat (= 14), dh-sequence-python3, libxext-dev,
+Build-Depends: debhelper-compat (= 13), dh-sequence-python3, libxext-dev,
  libvorbis-dev, libdbi-perl, default-libmysqlclient-dev, libfreetype-dev,
  libjack-jackd2-dev, qtscript5-dev, libavc1394-dev [linux-any], libfaad-dev,
  liblirc-dev, libsamplerate0-dev, libasound2-dev [linux-any], 
@@ -26,6 +26,7 @@ Build-Depends: debhelper-compat (= 14), dh-sequence-python3, libxext-dev,
  libaom-dev , python3-mysqldb, python3-lxml, python3-requests,
  python3-distutils-extra,
  libxcb-shm0-dev, libegl-dev, nv-codec-headers | libffmpeg-nvenc-dev [amd64 i386] ,
+ zstd,
  dh-linktree, fonts-freefont-ttf, fonts-tlwg-purisa-ttf, fonts-texgyre
 
 Package: mythtv
@@ -143,7 +144,9 @@ Multi-Arch: same
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends}, ${misc:Depends}, libqt5sql5-mysql, procps, iputils-ping
 Recommends: udisks2, ${shlibs:Recommends}
-Breaks: libmyth-0.27-0, libmyth-0.28-0, libmyth-30
+Breaks: libmyth-0.27-0, libmyth-0.28-0, libmyth-30,
+ libmyth-32, libmyth-33, libmyth-34,
+ libmyth-35, libmyth-36 
 Description: Common library code for MythTV and add-on modules (runtime)
  MythTV provides a unified graphical interface for recording and viewing
  television programs. Refer to the mythtv package for more information.
