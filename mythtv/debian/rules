@@ -90,7 +90,7 @@ override_dh_auto_install:
 	-rm debian/tmp/usr/local/lib/*/perl/*/auto/MythTV/.packlist
 	rm debian/tmp/usr/share/mythtv/themes/Terra/watermarks/README.license
 # Not needed
-	rm debian/tmp/usr/bin/mythwikiscripts
+	rm -f debian/tmp/usr/bin/mythwikiscripts
 
 	find debian/tmp/usr/share -type f -exec chmod 0644 {} \;
 
@@ -104,9 +104,9 @@ override_dh_auto_install:
 	chmod +x debian/tmp/usr/share/mythtv/metadata/Television/tvmaze.py
 
 override_dh_install:
-	rm debian/tmp/usr/share/mythtv/fonts/README-freefont-20120503.txt
-	rm debian/tmp/usr/share/mythtv/fonts/README-purisa.txt
-	rm debian/tmp/usr/share/mythtv/fonts/README-TeX-Gyre-Chorus.txt
+	rm -f debian/tmp/usr/share/mythtv/fonts/README-freefont-20120503.txt
+	rm -f debian/tmp/usr/share/mythtv/fonts/README-purisa.txt
+	rm -f debian/tmp/usr/share/mythtv/fonts/README-TeX-Gyre-Chorus.txt
 
 	dh_install -X.a -XCOPYING -XLICENSE -Xusr/share/mythtv/themes/MythCenter-wide/fonts
 

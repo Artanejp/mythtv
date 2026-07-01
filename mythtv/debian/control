@@ -22,7 +22,7 @@ Build-Depends: debhelper-compat (= 13), dh-sequence-python3, libxext-dev,
  libhdhomerun-dev (>= 20170815-2~), libsystemd-dev, librtmp-dev, libbz2-dev,
  libgnutls28-dev | gnutls-dev, libqt5opengl5-dev, libbluray-dev, libwww-perl,
  libnet-upnp-perl, libx265-dev, libmp3lame-dev, libxnvctrl-dev, liblzo2-dev,
- libxml-simple-perl, python3-simplejson, python3-future, 
+ libxml-simple-perl, python3-simplejson, 
  libaom-dev , python3-mysqldb, python3-lxml, python3-requests,
  python3-distutils-extra,
  libxcb-shm0-dev, libegl-dev, nv-codec-headers | libffmpeg-nvenc-dev [amd64 i386] ,
@@ -185,7 +185,7 @@ Section: python
 Conflicts: python-mythtv
 Replaces: python-mythtv
 Provides: ${python3:Provides}
-Depends: ${python3:Depends}, ${misc:Depends}, python3-mysqldb, python3-lxml, python3-future, python3-requests, python3-requests-cache, python3-simplejson, python3-future
+Depends: ${python3:Depends}, ${misc:Depends}, python3-mysqldb, python3-lxml, python3-requests, python3-requests-cache, python3-simplejson
 Description: Personal video recorder application (common data)
  MythTV provides a unified graphical interface for recording and viewing
  television programs. Refer to the mythtv package for more information.

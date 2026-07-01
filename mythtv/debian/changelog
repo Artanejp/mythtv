@@ -1,3 +1,9 @@
+mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.9) unstable; urgency=high
+
+  * Drop dependency of python-future. See bug #1063264 and #1056461 .
+
+ -- Kyuma Ohta <whatisthis.sowhat@gmail.com>  Tue, 01 Jul 2026 15:20:25 +0900
+
 mythtv-isdb-ja (2:31.0+fixes20220224.ISDB.8.2) unstable; urgency=low
 
   * Make building dbgsym packages correctness.

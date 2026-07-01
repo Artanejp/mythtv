@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: MythTV
+Version: 31.0
+Summary: MythTV Python bindings.
+Home-page: ['http://www.mythtv.org/']
+Requires: MySQLdb
+Requires: lxml
+Dynamic: description
+Dynamic: home-page
+Dynamic: requires
+Dynamic: summary
+
+Provides canned database and protocol access to the MythTV database, mythproto, mythxml, services_api and frontend remote control.

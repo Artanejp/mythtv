@@ -1,0 +1,8 @@
+MythTV
+MythTV/services_api
+MythTV/tmdb3
+MythTV/ttvdb
+MythTV/ttvdbv4
+MythTV/tvmaze
+MythTV/utility
+MythTV/wikiscripts
